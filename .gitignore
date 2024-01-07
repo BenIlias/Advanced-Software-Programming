@@ -136,3 +136,5 @@ _NCrunch*
 .vs/HospitalManagementSystem/DesignTimeBuild/.dtbcache.v2
 *.vsidx
 *.lock
+*.testlog
+*.manifest
