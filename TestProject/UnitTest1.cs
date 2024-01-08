@@ -106,7 +106,7 @@ namespace TestProject
 		}
 
 		[Test]
-		public void Fill()
+		public void FillCommands()
 		{
 			string commands = "rectangle 10,20 pen red fill on\n" +
 				"rectangle 30,40 pen red fill off";
