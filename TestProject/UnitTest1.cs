@@ -66,6 +66,64 @@ namespace TestProject
 		}
 
 		[Test]
+		public void MoveTo()
+		{
+			string commands = "moveto 10,20\n" +
+				"moveto 30,40";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void DrawTo()
+		{
+			string commands = "drawto 10,20 pen red\n" +
+				"drawto 30,40 pen red";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void Circle()
+		{
+			string commands = "circle 10,20 pen red\n" +
+				"circle 30,40 pen red";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void Triangle()
+		{
+			string commands = "triangle 10,20 pen red\n" +
+				"triangle 30,40 pen red";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void Rectangle()
+		{
+			string commands = "rectangle 10,20 pen red\n" +
+				"rectangle 30,40 pen red";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void Fill()
+		{
+			string commands = "rectangle 10,20 pen red fill on\n" +
+				"rectangle 30,40 pen red fill off";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
+		public void PenColor()
+		{
+			string commands = "rectangle 10,20 pen red\n" +
+				"rectangle 30,40 pen green\n" +
+				"rectangle 30,40 pen yellow\n" +
+				"rectangle 30,40 pen black";
+			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+		}
+
+		[Test]
 		public void SyntexCheck()
 		{
 			string MultiLineCommands = "moveto 10,20\n" +
