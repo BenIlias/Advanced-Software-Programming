@@ -31,206 +31,206 @@ namespace CommandShapes
 		/// </summary>
 		private void InitializeComponent()
 		{
-			pbOutput = new PictureBox();
-			textBox1 = new TextBox();
-			rtbInput = new RichTextBox();
-			btnRun = new Button();
-			btnSyntax = new Button();
-			btnExit = new Button();
-			lb1 = new Label();
-			lb3 = new Label();
-			lb2 = new Label();
-			btnSave = new Button();
-			lbFilePath = new Label();
-			openFileDialog = new OpenFileDialog();
-			btnBrowse = new Button();
-			((System.ComponentModel.ISupportInitialize)pbOutput).BeginInit();
-			SuspendLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.pbOutput = new System.Windows.Forms.PictureBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.rtbInput = new System.Windows.Forms.RichTextBox();
+			this.btnRun = new System.Windows.Forms.Button();
+			this.btnSyntax = new System.Windows.Forms.Button();
+			this.btnExit = new System.Windows.Forms.Button();
+			this.lb1 = new System.Windows.Forms.Label();
+			this.lb3 = new System.Windows.Forms.Label();
+			this.lb2 = new System.Windows.Forms.Label();
+			this.btnSave = new System.Windows.Forms.Button();
+			this.lbFilePath = new System.Windows.Forms.Label();
+			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.btnBrowse = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.pbOutput)).BeginInit();
+			this.SuspendLayout();
 			// 
 			// pbOutput
 			// 
-			pbOutput.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			pbOutput.BackColor = Color.DarkGray;
-			pbOutput.Location = new Point(468, 40);
-			pbOutput.Margin = new Padding(3, 2, 3, 2);
-			pbOutput.Name = "pbOutput";
-			pbOutput.Size = new Size(689, 562);
-			pbOutput.TabIndex = 0;
-			pbOutput.TabStop = false;
+			this.pbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbOutput.BackColor = System.Drawing.Color.DarkGray;
+			this.pbOutput.Location = new System.Drawing.Point(401, 35);
+			this.pbOutput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pbOutput.Name = "pbOutput";
+			this.pbOutput.Size = new System.Drawing.Size(591, 487);
+			this.pbOutput.TabIndex = 0;
+			this.pbOutput.TabStop = false;
 			// 
 			// textBox1
 			// 
-			textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			textBox1.BackColor = Color.WhiteSmoke;
-			textBox1.Location = new Point(38, 548);
-			textBox1.Margin = new Padding(3, 2, 3, 2);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(373, 23);
-			textBox1.TabIndex = 1;
-			textBox1.KeyDown += textBox1_KeyDown;
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.textBox1.Location = new System.Drawing.Point(33, 475);
+			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(320, 20);
+			this.textBox1.TabIndex = 1;
 			// 
 			// rtbInput
 			// 
-			rtbInput.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-			rtbInput.BackColor = Color.WhiteSmoke;
-			rtbInput.Location = new Point(38, 66);
-			rtbInput.Margin = new Padding(3, 2, 3, 2);
-			rtbInput.Name = "rtbInput";
-			rtbInput.Size = new Size(373, 456);
-			rtbInput.TabIndex = 2;
-			rtbInput.Text = "";
+			this.rtbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.rtbInput.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.rtbInput.Location = new System.Drawing.Point(33, 57);
+			this.rtbInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.rtbInput.Name = "rtbInput";
+			this.rtbInput.Size = new System.Drawing.Size(320, 396);
+			this.rtbInput.TabIndex = 2;
+			this.rtbInput.Text = "";
 			// 
 			// btnRun
 			// 
-			btnRun.FlatAppearance.BorderColor = Color.DarkGray;
-			btnRun.FlatAppearance.CheckedBackColor = Color.Gainsboro;
-			btnRun.FlatAppearance.MouseDownBackColor = Color.LightGray;
-			btnRun.FlatAppearance.MouseOverBackColor = Color.WhiteSmoke;
-			btnRun.FlatStyle = FlatStyle.Flat;
-			btnRun.Location = new Point(350, 37);
-			btnRun.Margin = new Padding(3, 2, 3, 2);
-			btnRun.Name = "btnRun";
-			btnRun.Size = new Size(61, 25);
-			btnRun.TabIndex = 3;
-			btnRun.Text = "Run";
-			btnRun.UseVisualStyleBackColor = true;
-			btnRun.Click += btnRun_Click;
+			this.btnRun.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnRun.FlatAppearance.CheckedBackColor = System.Drawing.Color.Gainsboro;
+			this.btnRun.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+			this.btnRun.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+			this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnRun.Location = new System.Drawing.Point(300, 32);
+			this.btnRun.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnRun.Name = "btnRun";
+			this.btnRun.Size = new System.Drawing.Size(52, 22);
+			this.btnRun.TabIndex = 3;
+			this.btnRun.Text = "Run";
+			this.btnRun.UseVisualStyleBackColor = true;
 			// 
 			// btnSyntax
 			// 
-			btnSyntax.FlatAppearance.BorderColor = Color.DarkGray;
-			btnSyntax.FlatAppearance.CheckedBackColor = Color.Gainsboro;
-			btnSyntax.FlatAppearance.MouseDownBackColor = Color.LightGray;
-			btnSyntax.FlatAppearance.MouseOverBackColor = Color.WhiteSmoke;
-			btnSyntax.FlatStyle = FlatStyle.Flat;
-			btnSyntax.Location = new Point(286, 37);
-			btnSyntax.Margin = new Padding(3, 2, 3, 2);
-			btnSyntax.Name = "btnSyntax";
-			btnSyntax.Size = new Size(58, 25);
-			btnSyntax.TabIndex = 4;
-			btnSyntax.Text = "Syntax";
-			btnSyntax.UseVisualStyleBackColor = true;
-			btnSyntax.Click += btnSyntax_Click;
+			this.btnSyntax.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnSyntax.FlatAppearance.CheckedBackColor = System.Drawing.Color.Gainsboro;
+			this.btnSyntax.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+			this.btnSyntax.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+			this.btnSyntax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSyntax.Location = new System.Drawing.Point(245, 32);
+			this.btnSyntax.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnSyntax.Name = "btnSyntax";
+			this.btnSyntax.Size = new System.Drawing.Size(50, 22);
+			this.btnSyntax.TabIndex = 4;
+			this.btnSyntax.Text = "Syntax";
+			this.btnSyntax.UseVisualStyleBackColor = true;
 			// 
 			// btnExit
 			// 
-			btnExit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-			btnExit.FlatAppearance.BorderColor = Color.DarkGray;
-			btnExit.FlatAppearance.CheckedBackColor = Color.Gainsboro;
-			btnExit.FlatAppearance.MouseDownBackColor = Color.LightGray;
-			btnExit.FlatAppearance.MouseOverBackColor = Color.WhiteSmoke;
-			btnExit.FlatStyle = FlatStyle.Flat;
-			btnExit.Location = new Point(1075, 606);
-			btnExit.Margin = new Padding(3, 2, 3, 2);
-			btnExit.Name = "btnExit";
-			btnExit.Size = new Size(82, 25);
-			btnExit.TabIndex = 5;
-			btnExit.Text = "Exit";
-			btnExit.UseVisualStyleBackColor = true;
-			btnExit.Click += btnExit_Click;
+			this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnExit.FlatAppearance.CheckedBackColor = System.Drawing.Color.Gainsboro;
+			this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+			this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+			this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnExit.Location = new System.Drawing.Point(921, 525);
+			this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnExit.Name = "btnExit";
+			this.btnExit.Size = new System.Drawing.Size(70, 22);
+			this.btnExit.TabIndex = 5;
+			this.btnExit.Text = "Exit";
+			this.btnExit.UseVisualStyleBackColor = true;
 			// 
 			// lb1
 			// 
-			lb1.AutoSize = true;
-			lb1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-			lb1.Location = new Point(38, 40);
-			lb1.Name = "lb1";
-			lb1.Size = new Size(190, 25);
-			lb1.TabIndex = 7;
-			lb1.Text = "Program Commands";
+			this.lb1.AutoSize = true;
+			this.lb1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.lb1.Location = new System.Drawing.Point(33, 35);
+			this.lb1.Name = "lb1";
+			this.lb1.Size = new System.Drawing.Size(190, 25);
+			this.lb1.TabIndex = 7;
+			this.lb1.Text = "Program Commands";
 			// 
 			// lb3
 			// 
-			lb3.AutoSize = true;
-			lb3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-			lb3.Location = new Point(468, 13);
-			lb3.Name = "lb3";
-			lb3.Size = new Size(130, 25);
-			lb3.TabIndex = 8;
-			lb3.Text = "Shapes Board";
+			this.lb3.AutoSize = true;
+			this.lb3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.lb3.Location = new System.Drawing.Point(401, 11);
+			this.lb3.Name = "lb3";
+			this.lb3.Size = new System.Drawing.Size(130, 25);
+			this.lb3.TabIndex = 8;
+			this.lb3.Text = "Shapes Board";
 			// 
 			// lb2
 			// 
-			lb2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			lb2.AutoSize = true;
-			lb2.Location = new Point(38, 531);
-			lb2.Name = "lb2";
-			lb2.Size = new Size(124, 15);
-			lb2.TabIndex = 9;
-			lb2.Text = "Individual Commands";
+			this.lb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lb2.AutoSize = true;
+			this.lb2.Location = new System.Drawing.Point(33, 460);
+			this.lb2.Name = "lb2";
+			this.lb2.Size = new System.Drawing.Size(107, 13);
+			this.lb2.TabIndex = 9;
+			this.lb2.Text = "Individual Commands";
 			// 
 			// btnSave
 			// 
-			btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			btnSave.FlatAppearance.BorderColor = Color.DarkGray;
-			btnSave.FlatAppearance.CheckedBackColor = Color.Gainsboro;
-			btnSave.FlatAppearance.MouseDownBackColor = Color.LightGray;
-			btnSave.FlatAppearance.MouseOverBackColor = Color.WhiteSmoke;
-			btnSave.FlatStyle = FlatStyle.Flat;
-			btnSave.Location = new Point(364, 577);
-			btnSave.Margin = new Padding(3, 2, 3, 2);
-			btnSave.Name = "btnSave";
-			btnSave.Size = new Size(47, 25);
-			btnSave.TabIndex = 5;
-			btnSave.Text = "Save";
-			btnSave.UseVisualStyleBackColor = true;
-			btnSave.Click += btnSave_Click;
+			this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnSave.FlatAppearance.CheckedBackColor = System.Drawing.Color.Gainsboro;
+			this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+			this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSave.Location = new System.Drawing.Point(312, 500);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(40, 22);
+			this.btnSave.TabIndex = 5;
+			this.btnSave.Text = "Save";
+			this.btnSave.UseVisualStyleBackColor = true;
 			// 
 			// lbFilePath
 			// 
-			lbFilePath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			lbFilePath.AutoEllipsis = true;
-			lbFilePath.Location = new Point(38, 604);
-			lbFilePath.Name = "lbFilePath";
-			lbFilePath.Size = new Size(373, 17);
-			lbFilePath.TabIndex = 10;
+			this.lbFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lbFilePath.AutoEllipsis = true;
+			this.lbFilePath.Location = new System.Drawing.Point(33, 523);
+			this.lbFilePath.Name = "lbFilePath";
+			this.lbFilePath.Size = new System.Drawing.Size(320, 15);
+			this.lbFilePath.TabIndex = 10;
 			// 
 			// openFileDialog
 			// 
-			openFileDialog.FileName = "program.txt";
+			this.openFileDialog.FileName = "program.txt";
 			// 
 			// btnBrowse
 			// 
-			btnBrowse.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-			btnBrowse.FlatAppearance.BorderColor = Color.DarkGray;
-			btnBrowse.FlatAppearance.CheckedBackColor = Color.Gainsboro;
-			btnBrowse.FlatAppearance.MouseDownBackColor = Color.LightGray;
-			btnBrowse.FlatAppearance.MouseOverBackColor = Color.WhiteSmoke;
-			btnBrowse.FlatStyle = FlatStyle.Flat;
-			btnBrowse.Location = new Point(302, 577);
-			btnBrowse.Margin = new Padding(3, 2, 3, 2);
-			btnBrowse.Name = "btnBrowse";
-			btnBrowse.Size = new Size(56, 25);
-			btnBrowse.TabIndex = 5;
-			btnBrowse.Text = "Browse";
-			btnBrowse.UseVisualStyleBackColor = true;
-			btnBrowse.Click += btnBrowse_Click;
+			this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnBrowse.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnBrowse.FlatAppearance.CheckedBackColor = System.Drawing.Color.Gainsboro;
+			this.btnBrowse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+			this.btnBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+			this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnBrowse.Location = new System.Drawing.Point(259, 500);
+			this.btnBrowse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnBrowse.Name = "btnBrowse";
+			this.btnBrowse.Size = new System.Drawing.Size(48, 22);
+			this.btnBrowse.TabIndex = 5;
+			this.btnBrowse.Text = "Browse";
+			this.btnBrowse.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
-			AutoScaleDimensions = new SizeF(7F, 15F);
-			AutoScaleMode = AutoScaleMode.Font;
-			BackColor = Color.White;
-			ClientSize = new Size(1169, 639);
-			Controls.Add(lbFilePath);
-			Controls.Add(lb2);
-			Controls.Add(lb3);
-			Controls.Add(lb1);
-			Controls.Add(btnBrowse);
-			Controls.Add(btnSave);
-			Controls.Add(btnExit);
-			Controls.Add(btnSyntax);
-			Controls.Add(btnRun);
-			Controls.Add(rtbInput);
-			Controls.Add(textBox1);
-			Controls.Add(pbOutput);
-			Margin = new Padding(3, 2, 3, 2);
-			Name = "MainForm";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "Shape Commands";
-			((System.ComponentModel.ISupportInitialize)pbOutput).EndInit();
-			ResumeLayout(false);
-			PerformLayout();
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(1002, 554);
+			this.Controls.Add(this.lbFilePath);
+			this.Controls.Add(this.lb2);
+			this.Controls.Add(this.lb3);
+			this.Controls.Add(this.lb1);
+			this.Controls.Add(this.btnBrowse);
+			this.Controls.Add(this.btnSave);
+			this.Controls.Add(this.btnExit);
+			this.Controls.Add(this.btnSyntax);
+			this.Controls.Add(this.btnRun);
+			this.Controls.Add(this.rtbInput);
+			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.pbOutput);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Shape Commands";
+			((System.ComponentModel.ISupportInitialize)(this.pbOutput)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
 		}
 
 		#endregion
