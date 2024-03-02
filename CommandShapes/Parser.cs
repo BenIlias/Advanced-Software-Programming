@@ -388,5 +388,40 @@ namespace CommandShapes
 			if (variables == null) variables = Variables;
 			return variables.Any(x => x.Item1 == value);
 		}
+
+		public static bool CheckCondition(string conditional, string conditionalStatement)
+		{
+			string condition = conditionalStatement.Substring(conditionalStatement.IndexOf(conditional) + conditional.Length).Trim();
+
+			string[] operands = condition.Split(new string[] { "==", "<=", ">=", "<", ">" }, StringSplitOptions.None);
+
+			string left = operands[0].Trim();
+			string right = operands[1].Trim();
+
+			int leftValue = GetVariableValue(left);
+			int rightValue = GetVariableValue(right);
+
+			if (condition.Contains("==")) return leftValue == rightValue;
+			else if (condition.Contains("<=")) return leftValue <= rightValue;
+			else if (condition.Contains(">=")) return leftValue >= rightValue;
+			else if (condition.Contains("<")) return leftValue < rightValue;
+			else if (condition.Contains(">")) return leftValue > rightValue;
+
+			return true;
+		}
+
+		public static int GetEndIndex(int i, string[] commands, string endTag)
+		{
+			int endIndex = -1;
+			for (int j = i; j < commands.Length; j++)
+			{
+				if (commands[j].Trim().Equals(endTag))
+				{
+					endIndex = j;
+					break;
+				}
+			}
+			return endIndex;
+		}
 	}
 }
