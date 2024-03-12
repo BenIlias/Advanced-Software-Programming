@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using System;
+using System.Threading.Tasks;
 
 namespace CommandShapes
 {
@@ -12,12 +13,28 @@ namespace CommandShapes
 		/// <summary>
 		/// Board object for drawing shapes and lines
 		/// </summary>
-		Board board;
+		public Board board;
+
+		/// <summary>
+		/// Check the starting point of the loop
+		/// </summary>
+		private int loopStart = 0;
+
+		private static MainForm _instance;
+		public static MainForm Instance
+		{
+			get
+			{
+				if(_instance == null)
+					_instance = new MainForm();
+				return _instance;
+			}
+		}
 
 		/// <summary>
 		/// Main form constructor
 		/// </summary>
-		public MainForm()
+		private MainForm()
 		{
 			InitializeComponent();
 
@@ -25,13 +42,16 @@ namespace CommandShapes
 			board = new Board(pbOutput);
 		}
 
+
+
 		/// <summary>
 		/// Execute the given command
 		/// </summary>
 		/// <param name="command"></param>
 		/// <returns></returns>
-		private bool Execute(string command)
+		private bool Execute(string command, Board board2 = null)
 		{
+			if (board2 == null) board2 = board;
 			try
 			{
 				// Convert command to lowercase
@@ -40,24 +60,21 @@ namespace CommandShapes
 				// Create a parser object for parsing the command
 				Parser parser = new Parser(command);
 
+				if (Parser.ExecuteVariableCommand(command))
+				{
+					return true;
+				}	
+
 				// Check if command is special command
-				if (TryHandleSpecialCommands(command))
+				if (TryHandleSpecialCommands(command, board2))
 				{
 					// Update the picture box and return true
 					pbOutput.Invalidate();
 					return true;
 				}
 
-				// Check if command is valid
-				if (!Parser.IsValidSyntax(command))
-				{
-					// If the syntax is invalid then show syntax error and return false
-					ShowSyntaxError();
-					return false;
-				}
-
 				// Execute the drawing command
-				ExecuteDrawingCommand(parser);
+				ExecuteDrawingCommand(parser, board2);
 
 				// Update the picture box and return true
 				pbOutput.Invalidate();
@@ -76,11 +93,13 @@ namespace CommandShapes
 		/// </summary>
 		/// <param name="command"></param>
 		/// <returns></returns>
-		private bool TryHandleSpecialCommands(string command)
+		private bool TryHandleSpecialCommands(string command, Board board2)
 		{
+			if (board2 == null) board2 = board;
 			// Check if command is run
 			if (command.Equals("run"))
 			{
+				Parser.Variables.Clear();
 				// Run the commands in the rich text box
 				Run(rtbInput.Text);
 				return true;
@@ -89,14 +108,16 @@ namespace CommandShapes
 			else if (command.Equals("clear"))
 			{
 				// Clear the picture box
-				board.Clear();
+				board2.Clear();
+				Parser.Variables.Clear();
 				return true;
 			}
 			// Check if command is reset
 			else if (command.Equals("reset"))
 			{
 				// Reset the application state
-				ResetApplicationState();
+				ResetApplicationState(board2);
+				Parser.Variables.Clear();
 				return true;
 			}
 
@@ -107,25 +128,26 @@ namespace CommandShapes
 		/// Execute the drawing command
 		/// </summary>
 		/// <param name="parser"></param>
-		private void ExecuteDrawingCommand(Parser parser)
+		private void ExecuteDrawingCommand(Parser parser, Board board2 = null)
 		{
+			if(board2 == null) { board2 = board; }
 			// Check the shape type and execute the command accordingly
 			switch (parser.GetShapeType())
 			{
 				case "moveto":
-					board.MoveTo(Convert.ToInt32(parser.Parameters[0]), Convert.ToInt32(parser.Parameters[1]));
+					board2.MoveTo(Convert.ToInt32(Parser.GetVariableValue(parser.Parameters[0])), Parser.GetVariableValue(parser.Parameters[1]));
 					break;
 				case "drawto":
-					board.DrawTo(Convert.ToInt32(parser.Parameters[0]), Convert.ToInt32(parser.Parameters[1]), parser.GetPenColor());
+					board2.DrawTo(Convert.ToInt32(Parser.GetVariableValue(parser.Parameters[0])), Parser.GetVariableValue(parser.Parameters[1]), parser.GetPenColor());
 					break;
 				case "circle":
-					board.Circle(Convert.ToInt32(parser.Parameters[0]), parser.GetPenColor(), parser.GetFill());
+					board2.Circle(Convert.ToInt32(Parser.GetVariableValue(parser.Parameters[0])), parser.GetPenColor(), parser.GetFill());
 					break;
 				case "triangle":
-					board.Triangle(Convert.ToInt32(parser.Parameters[0]), parser.GetPenColor(), parser.GetFill());
+					board2.Triangle(Convert.ToInt32(Parser.GetVariableValue(parser.Parameters[0])), parser.GetPenColor(), parser.GetFill());
 					break;
 				case "rectangle":
-					board.Rectangle(Convert.ToInt32(parser.Parameters[0]), Convert.ToInt32(parser.Parameters[1]), parser.GetPenColor(), parser.GetFill());
+					board2.Rectangle(Convert.ToInt32(Parser.GetVariableValue(parser.Parameters[0])), Parser.GetVariableValue(parser.Parameters[1]), parser.GetPenColor(), parser.GetFill());
 					break;
 				default:
 					// If the shape type is invalid then show syntax error
@@ -137,23 +159,25 @@ namespace CommandShapes
 		/// <summary>
 		/// Reset the application state
 		/// </summary>
-		private void ResetApplicationState()
+		private void ResetApplicationState(Board board2 = null)
 		{
+			if (board2 == null) { board2 = board; }
 			// Clear the rich text box and text box
 			rtbInput.Text = "";
 			textBox1.Text = "";
 
 			// Clear the picture box and set the file path label to empty
 			lbFilePath.Text = "";
-			board.Clear();
+			board2.Clear();
 		}
 
 		/// <summary>
 		/// Show syntax error message box
 		/// </summary>
-		private void ShowSyntaxError()
+		public Task ShowSyntaxError()
 		{
 			MessageBox.Show("Invalid syntex, please try again", "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return Task.CompletedTask;
 		}
 
 		/// <summary>
@@ -171,10 +195,10 @@ namespace CommandShapes
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnRun_Click(object sender, EventArgs e)
+		private async void btnRun_Click(object sender, EventArgs e)
 		{
 			// Run the commands in the rich text box
-			Run(rtbInput.Text);
+			await Run(rtbInput.Text);
 
 			// Clear label of the file path if the file was load earlier
 			lbFilePath.Text = "";
@@ -204,10 +228,10 @@ namespace CommandShapes
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnSyntax_Click(object sender, EventArgs e)
+		private async void btnSyntax_Click(object sender, EventArgs e)
 		{
 			// Check the syntax of the commands in the rich text box
-			if (Parser.IsValidSyntax(rtbInput.Text))
+			if (await Parser.IsValidSyntax(rtbInput.Text))
 			{
 				MessageBox.Show("Given syntex is correct.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				lbFilePath.Text = "";
@@ -215,7 +239,7 @@ namespace CommandShapes
 			else
 			{
 				// If the syntax is invalid then show syntax error
-				ShowSyntaxError();
+				await ShowSyntaxError();
 			}
 		}
 
@@ -223,34 +247,76 @@ namespace CommandShapes
 		/// Run the commands in the rich text box
 		/// </summary>
 		/// <param name="input"></param>
-		private void Run(String input)
+		public async Task Run(String input, Board board = null)
 		{
 			try
 			{
 				// Check the syntax of the commands in the rich text box
-				if (Parser.IsValidSyntax(input))
+				if (await Parser.IsValidSyntax(input))
 				{
+					int loopStart = 0;
+
 					// Split the commands on basis of new line
-					String[] commands = input.Split('\n');
-					foreach (String command in commands)
+					String[] commands = input.ToLower().Split('\n');
+					for (int i = 0; i < commands.Length; i++)
 					{
 						// If the command is empty then continue
-						if (command.Trim().Equals("")) continue;
+						if (commands[i].Trim().Equals("")) continue;
 
-						// Execute the command
-						Execute(command);
+						Parser parser = new Parser(commands[i]);
+
+						if (parser.GetShapeType().Equals("while"))
+						{
+							if (Parser.CheckCondition("while", commands[i]))
+							{
+								loopStart = i;
+							}
+							else
+							{
+								int endLoopIndex = Parser.GetEndIndex(i, commands, "endwhile");
+								i = endLoopIndex == -1 ? throw new Exception("EndWhile tag not found.") : endLoopIndex;
+							}
+						}
+						else if (parser.GetShapeType().Equals("if"))
+						{
+							if (!Parser.CheckCondition("if", commands[i]))
+							{
+								int endIfIndex = Parser.GetEndIndex(i, commands, "endif");
+								i = endIfIndex == -1 ? throw new Exception("EndIf tag not found.") : endIfIndex;
+							}
+						}
+						else if (parser.GetShapeType().Equals("endwhile"))
+						{
+							if (!commands[i].Trim().Equals("endwhile"))
+							{
+								throw new Exception("Syntax error");
+							}
+							i = loopStart - 1;
+						}
+						else if (parser.GetShapeType().Equals("endif"))
+						{
+							if (!commands[i].Trim().Equals("endif"))
+							{
+								throw new Exception("Syntax error");
+							}
+						}
+						else
+						{
+							if(!Execute(commands[i], board)) throw new Exception("Syntax error");
+						}
+
 					}
 				}
 				else
 				{
 					// If the syntax is invalid then show syntax error
-					ShowSyntaxError();
+					await ShowSyntaxError();
 				}
 			}
 			catch (Exception)
 			{
 				// If an exception occurs then show syntax error
-				ShowSyntaxError();
+				await ShowSyntaxError();
 			}
 		}
 
