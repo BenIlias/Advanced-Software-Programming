@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CommandShapes
 {
@@ -155,7 +156,7 @@ namespace CommandShapes
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		public static bool IsValidSyntax(string input)
+		public static Task<bool> IsValidSyntax(string input)
 		{
 			try
 			{
@@ -164,7 +165,7 @@ namespace CommandShapes
 				string[] commands = input.ToLower().Split('\n');
 				foreach (string command in commands)
 				{
-					if(IsKeyword(command))
+					if (IsKeyword(command))
 					{
 						continue;
 					}
@@ -186,28 +187,28 @@ namespace CommandShapes
 						{
 							// Check if the pen color is valid
 							if (numParts > 2 && !IsValidPenColor(parts[3]))
-								return false;
+								return Task.FromResult(false);
 
 							// Check if the fill is valid
 							if (numParts > 4 && !IsValidFill(parts[5]))
-								return false;
+								return Task.FromResult(false);
 						}
 						else
 						{
-							return false;
+							return Task.FromResult(false);
 						}
 					}
 					else
 					{
-						return false;
+						return Task.FromResult(false);
 					}
 				}
 			}
 			catch (Exception)
 			{
-				return false;
+				return Task.FromResult(false);
 			}
-			return true;
+			return Task.FromResult(true);
 		}
 
 		private static bool IsKeyword(string command)
