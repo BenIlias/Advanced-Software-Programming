@@ -458,5 +458,11 @@ namespace CommandShapes
 				lbFilePath.Text = "";
 			}
 		}
+
+		private void btnNewProgram_Click(object sender, EventArgs e)
+		{
+			ParallelCode newProgram = new ParallelCode();
+			newProgram.Show();
+		}
 	}
 }
