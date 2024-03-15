@@ -165,7 +165,7 @@ namespace CommandShapes
 				string[] commands = input.ToLower().Split('\n');
 				foreach (string command in commands)
 				{
-					if (IsKeyword(command))
+					if(IsKeyword(command))
 					{
 						continue;
 					}
