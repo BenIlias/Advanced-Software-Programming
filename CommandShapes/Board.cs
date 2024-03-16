@@ -32,7 +32,7 @@ namespace CommandShapes
 		/// <summary>
 		/// Bitmap object for storing the drawing
 		/// </summary>
-		Bitmap bitmap;
+		static Bitmap bitmap;
 
 		/// <summary>
 		/// Board constructor
@@ -44,7 +44,8 @@ namespace CommandShapes
 			x = y = 0;
 
 			// Create a bitmap object for storing the drawing
-			bitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
+			if(bitmap == null ) 
+				bitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
 
 			// Set the picture box image to the bitmap
 			pictureBox.Image = bitmap;
@@ -55,8 +56,9 @@ namespace CommandShapes
 			// Set the background color of the picture box to dark gray
 			colors = new Color[PointerSize, PointerSize];
 
-			// Clear the drawing
-			Clear();
+			TempState(x, y);
+
+			DrawPointer(x, y);
 		}
 
 		/// <summary>
