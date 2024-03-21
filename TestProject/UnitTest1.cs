@@ -12,17 +12,14 @@ namespace TestProject
 		[Test]
 		public void Parameters()
 		{
-			Assert.Pass();
 			Parser parser = new Parser("rectangle 10,20");
-			Assert.That(parser.Parameters[0], Is.EqualTo("rectangle"));
-			Assert.That(parser.Parameters[1], Is.EqualTo("10"));
-			Assert.That(parser.Parameters[3], Is.EqualTo("20"));
+			Assert.That(parser.Parameters[0], Is.EqualTo("10"));
+			Assert.That(parser.Parameters[1], Is.EqualTo("20"));
 		}
 
 		[Test]
 		public void Fill()
 		{
-			Assert.Pass();
 			Parser parser = new Parser("rectangle 10,20 pen red fill on");
 			Assert.That(parser.IsFill, Is.True);
 			parser = new Parser("rectangle 10,20 pen red fill off");
@@ -36,7 +33,6 @@ namespace TestProject
 		[Test]
 		public void Color()
 		{
-			Assert.Pass();
 			Parser parser = new Parser("rectangle 10,20 pen red");
 			Assert.That(parser.PenColor, Is.EqualTo(System.Drawing.Color.Red));
 			parser = new Parser("rectangle 10,20 pen green");
@@ -52,7 +48,6 @@ namespace TestProject
 		[Test]
 		public void ShapeType()
 		{
-			Assert.Pass();
 			Parser parser = new Parser("rectangle 10,20 pen red");
 			Assert.That(parser.GetShapeType(), Is.EqualTo("rectangle"));
 			parser = new Parser("circle 10,20 pen red");
@@ -139,6 +134,66 @@ namespace TestProject
 				"circle 10,10 pen yellow fill on\n" +
 				"triangle 10,10 pen green fill on";
 			Assert.That(Parser.IsValidSyntax(MultiLineCommands), Is.True);
+		}
+
+		[Test]
+		[TestCase("var = var + 20", 40)]
+		[TestCase("var = var - 20", 0)]
+		[TestCase("var = var * 10", 200)]
+		[TestCase("var = var / 10", 2)]
+		public void Variables(string operation, int output)
+		{
+			string var = "var = 20";
+			Assert.That(Parser.ExecuteVariableCommand(var), Is.True);
+			Assert.That(Parser.Variables[0].Item1, Is.EqualTo("var"));
+			Assert.That(Parser.Variables[0].Item2, Is.EqualTo(20));
+			Assert.That(Parser.ExecuteVariableCommand(operation), Is.True);
+			Assert.That(Parser.Variables[0].Item1, Is.EqualTo("var"));
+			Assert.That(Parser.Variables[0].Item2, Is.EqualTo(output));
+		}
+
+		[Test]
+		[TestCase("if 20 < 21", true)]
+		[TestCase("if 20 > 21", false)]
+		[TestCase("if 20 <= -21", false)]
+		[TestCase("if 20 == 20", true)]
+		public void IfCondition(string operation, bool output)
+		{
+			Assert.That(Parser.CheckCondition("if", operation), Is.EqualTo(output));
+		}
+
+		[Test]
+		[TestCase("while 20 < 21", true)]
+		[TestCase("while 20 > 21", false)]
+		[TestCase("while 20 <= -21", false)]
+		[TestCase("while 20 == 20", true)]
+		public void WhileCondition(string operation, bool output)
+		{
+			Assert.That(Parser.CheckCondition("while", operation), Is.EqualTo(output));
+		}
+
+		[Test]
+		[TestCase("if var < 21", true)]
+		[TestCase("if var > 21", false)]
+		[TestCase("if var <= -21", false)]
+		[TestCase("if var == 20", true)]
+		public void IfConditionWithVariable(string operation, bool output)
+		{
+			string var = "var = 20";
+			Assert.That(Parser.ExecuteVariableCommand(var), Is.True);
+			Assert.That(Parser.CheckCondition("if", operation), Is.EqualTo(output));
+		}
+
+		[Test]
+		[TestCase("while var < 21", true)]
+		[TestCase("while var > 21", false)]
+		[TestCase("while var <= -21", false)]
+		[TestCase("while var == 20", true)]
+		public void WhileConditionWithVariable(string operation, bool output)
+		{
+			string var = "var = 20";
+			Assert.That(Parser.ExecuteVariableCommand(var), Is.True);
+			Assert.That(Parser.CheckCondition("while", operation), Is.EqualTo(output));
 		}
 	}
 }
