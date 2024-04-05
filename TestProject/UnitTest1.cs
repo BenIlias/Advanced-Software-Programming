@@ -61,65 +61,65 @@ namespace TestProject
 		}
 
 		[Test]
-		public void MoveTo()
+		public async Task MoveTo()
 		{
 			string commands = "moveto 10,20\n" +
 				"moveto 30,40";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void DrawTo()
+		public async Task DrawTo()
 		{
-			string commands = "drawto 10,20 pen red\n" +
-				"drawto 30,40 pen red";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			string commands = "drawto 10,20\n" +
+				"drawto 30,40";
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void Circle()
+		public async Task Circle()
 		{
 			string commands = "circle 10,20 pen red\n" +
 				"circle 30,40 pen red";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void Triangle()
+		public async Task Triangle()
 		{
 			string commands = "triangle 10,20 pen red\n" +
 				"triangle 30,40 pen red";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void Rectangle()
+		public async Task Rectangle()
 		{
 			string commands = "rectangle 10,20 pen red\n" +
 				"rectangle 30,40 pen red";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void FillCommands()
+		public async Task FillCommands()
 		{
 			string commands = "rectangle 10,20 pen red fill on\n" +
 				"rectangle 30,40 pen red fill off";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void PenColor()
+		public async Task PenColor()
 		{
 			string commands = "rectangle 10,20 pen red\n" +
 				"rectangle 30,40 pen green\n" +
 				"rectangle 30,40 pen yellow\n" +
 				"rectangle 30,40 pen black";
-			Assert.That(Parser.IsValidSyntax(commands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(commands), Is.True);
 		}
 
 		[Test]
-		public void SyntexCheck()
+		public async Task SyntexCheck()
 		{
 			string MultiLineCommands = "moveto 10,20\n" +
 				"drawto 10,20 pen red\n" +
@@ -133,7 +133,7 @@ namespace TestProject
 				"drawto 10,20 pen yellow\n" +
 				"circle 10,10 pen yellow fill on\n" +
 				"triangle 10,10 pen green fill on";
-			Assert.That(Parser.IsValidSyntax(MultiLineCommands), Is.True);
+			Assert.That(await Parser.IsValidSyntax(MultiLineCommands), Is.True);
 		}
 
 		[Test]
